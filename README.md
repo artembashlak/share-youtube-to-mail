@@ -10,4 +10,5 @@ Demo project to use:
  Draft version of tests that open youtube, search video, get link to share and send it by email.
 
 
- 
+### Result in email:
+![Image](out/example.png)
