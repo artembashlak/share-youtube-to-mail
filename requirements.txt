@@ -1,0 +1,5 @@
+selenium~=3.141.0
+webdriver_manager
+pytest~=6.1.0
+clipboard~=0.0.4
+smtplib
