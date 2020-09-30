@@ -10,6 +10,7 @@ load_dotenv()
 
 email = os.getenv("gmail_user")
 password = os.getenv("gmail_password")
+receiver_email = os.getenv("receiver_email")
 
 logging.basicConfig()
 
@@ -19,7 +20,6 @@ class EmailService:
     @staticmethod
     def send_email(url):
         sender_email = email
-        receiver_email = "abashlak@waverleysoftware.com"
         url_to_use = url
 
         msg = MIMEMultipart()
