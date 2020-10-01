@@ -5,8 +5,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
-from services.email_service import EmailService
-from utility.utilities import UtilityMethods
+from core.services.email_service import EmailService
+from core.utility.utilities import UtilityMethods
 
 options = webdriver.ChromeOptions()
 options.add_argument("--headless")  # Runs Chrome in headless mode.
