@@ -1,10 +1,10 @@
 import clipboard
-import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from core.locators.homepage_locators import HomepageLocators
+from core.pages.youtube_page import YoutubePage
 from core.services.email_service import EmailService
 from core.utility.utilities import UtilityMethods
 
@@ -12,23 +12,13 @@ locators = HomepageLocators()
 url = "https://www.youtube.com/"
 
 
-class Test_Share_Button:
-    @pytest.mark.skip("")
-    def test_open_youtube(self, browser) -> None:
-        browser.get(url)
-        title = browser.title
-        assert "YouTube" in title
+class TestShareButton:
 
-    def test_search_field(self, browser) -> None:
-        browser.get(url)
-        WebDriverWait(browser, 5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, locators.search_field))) \
-            .send_keys("pytest")
-        browser.find_element_by_css_selector(locators.search_button).click()
-        elem = browser.find_elements_by_id(locators.video_title)[0]
-        url_first_video_after_search = elem.get_attribute(locators.video_href)
-        print("First video URL is: " + url_first_video_after_search)
-        assert url_first_video_after_search is not None or ""
-        browser.get(url_first_video_after_search)
+    def test_youtube_title(self, browser) -> None:
+        youtube_page = YoutubePage(browser)
+        youtube_page.go_to_site()
+        title = youtube_page.get_page_title()
+        assert "YouTube" in title
 
     def test_share_button_url(self, browser) -> None:
         browser.get(url)
