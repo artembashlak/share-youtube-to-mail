@@ -2,3 +2,15 @@ TODO: create pom
 TODO: create driver wrappers
 TODO: setup jenkins
 TODO: create job that will run that tests on jenkins
+
+
+Steps to move project to POM structure:
+1. Create fixture to open browser (webdriver)
+2. Create base page class with methods that knows how to work with driver -> find, wait, go to site
+3. Create page class that uses methods from base page and contains locators. Plus, it has methods to work with page,
+not driver
+4. Create test that uses only methods of page class
+
+Structure how POM should work:
+
+Conftest with driver init fixture -> Base page(get url, wait) -> Page -> Test
