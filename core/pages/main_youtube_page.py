@@ -7,6 +7,7 @@ SEARCH_BUTTON = (By.CSS_SELECTOR, "button.style-scope.ytd-searchbox#search-icon-
 
 
 class MainYoutubePage(BasePage):
+
     def get_page_title(self):
         title = self.driver.title
         return title
@@ -19,3 +20,6 @@ class MainYoutubePage(BasePage):
 
     def get_link(self, locator, attr):
         return self.driver.find_elements_by_css_selector(locator)[0].get_attribute(attr)
+
+    def get_base_url(self):
+        return "https://www.youtube.com/"
