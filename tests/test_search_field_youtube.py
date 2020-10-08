@@ -9,11 +9,11 @@ from core.utility.utilities import str_to_video_name
 
 
 class TestShareButton:
-    @pytest.mark.skip("Skip long test")
     def test_youtube_title(self, browser) -> None:
         youtube_page = MainYoutubePage(browser)
         assert "YouTube" in youtube_page.get_page_title()
 
+    @pytest.mark.skip("Skip long test")
     def test_share_button_url(self, browser):
         youtube_page = MainYoutubePage(browser)
         youtube_page.send_text(SEARCH_FIELD, "pytest")
