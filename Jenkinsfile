@@ -1,15 +1,17 @@
-pipeline {
-  agent { docker { image 'python:3.7.2' } }
-  stages {
-    stage('build') {
-      steps {
-        sh 'pip install -r requirements.txt'
-      }
+node {
+    stage('Cleanup') {
+        step([$class: 'WsCleanup'])
+    }
+    stage('Checkout SCM') {
+        checkout scm
+    }
+    def pythonImage
+    stage('build docker image') {
+        pythonImage = docker.build("youtube:build")
     }
     stage('test') {
-      steps {
-        sh 'pytest'
-      }   
+        pythonImage.inside {
+            sh '. /tmp/venv/bin/activate && pytest'
+        }
     }
-  }
 }
