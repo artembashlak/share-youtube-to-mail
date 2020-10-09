@@ -6,12 +6,11 @@ node {
         checkout scm
     }
     def pythonImage
-    stage('build docker image') {
-        pythonImage = docker.build("youtube:build")
-    }
-    stage('test') {
-        pythonImage.inside {
-            sh '. /tmp/venv/bin/activate && pytest'
-        }
+    stage("test PythonEnv") {
+
+    withPythonEnv('python3') {
+        sh 'pip install pytest'
+        sh 'pytest mytest.py'
+        }   	
     }
 }
