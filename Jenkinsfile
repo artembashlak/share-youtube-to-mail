@@ -1,15 +1,16 @@
-#!/usr/bin/env groovy
-import hudson.model.*
-
-node('master') {
-    stage('Python pytest Tests') {
-	dir('python/pytest') {
-		sh 'virtualenv -p /usr/bin/python3 venv'
-		sh 'source venv/bin/activate && pip install -r requirements.txt'
-		sh 'source venv/bin/activate && pytest --junit-xml=test_results.xml test || true'
-		junit keepLongStdio: true, allowEmptyResults: true, testResults: 'test_results.xml'
-	}
-	}	  
-}
+def gitCred = "247a2050-69da-4697-8fd9-cab389d195d5"
+def repoUrl = "https://github.com/artembashlak/share-youtube-to-mail.git"
 
 
+
+node() {
+
+        stage('Repository clone') {
+            deleteDir()
+            git branch: "master", credentialsId: "${gitCred}", url: "${repoUrl}"
+        }
+
+        stage('Launch test') {
+            sh '/usr/local/opt/python/libexec/bin/python -m pytest tests/'
+        }
+    }
