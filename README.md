@@ -8,7 +8,3 @@ Demo project to use:
 ## What's done for now:
 
  Draft version of tests that open youtube, search video, get link to share and send it by email.
-
-
-### Result in email:
-![Image](out/example.png)
